@@ -1,0 +1,217 @@
+//Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  min-width: 230px;
+  height: 45px;
+  padding: 10px;
+  border-radius: 0;
+  border: solid 1px $black;
+
+  transition: background 1s cubic-bezier(0.18, 0.9, 0.39, 0.98);
+  cursor: pointer;
+  gap: 5px;
+  text-decoration: none;
+
+  span {
+    color: $black;
+
+  }
+
+  svg {
+    transition: transform 0.3s cubic-bezier(.19, 1, .22, 1);
+  }
+
+  &:hover,
+  &:focus {
+
+    svg {
+      transform: translateX(5px);
+    }
+  }
+
+  &-orange {
+
+
+    svg {
+      path {
+        fill: $orange;
+      }
+    }
+  }
+
+  &-white {
+    border-color: $white;
+
+    span {
+      color: $white;
+    }
+  }
+
+  &-small {
+    min-width: 130px;
+  }
+
+  &-news{
+    background-color: $blue;
+    border-color:$blue;
+    min-width: 70px;
+    height: 30px;
+    span{
+      color:$white;
+    }
+    svg{
+      display: none;
+    }
+  }
+
+  &-swiper{
+    border:none;
+    background: none;
+    min-width: auto;
+    height: auto;
+    svg{
+      path{
+        fill:$white;
+      }
+    }
+  }
+}
+
+//Swipers
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .swiper-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: flex;
+    flex-wrap: nowrap;
+    transition-property: transform;
+    box-sizing: content-box;
+
+    .swiper-slide {
+      flex-shrink: 0;
+      flex-grow: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transition-property: transform;
+
+    }
+
+  }
+
+  .swiper-navigation {
+    
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    justify-content: flex-start;
+    position: absolute;
+    left:0; bottom: 0;
+    z-index: 2;
+
+
+    .swiper-button-prev {
+      transform: rotate(180deg);
+    }
+  }
+
+}
+
+//Small components
+.card {
+  &-news {}
+}
+
+.breadcrumb {
+  margin-bottom: 25px;
+
+  @include min(lg) {
+    margin-bottom: 50px;
+  }
+
+  span,
+  a {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.86;
+    letter-spacing: -0.98px;
+  }
+}
+
+
+article.card-news {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .img-wrap {
+    //height: 35dvh;
+    aspect-ratio: 380 / 260; /* Define the aspect ratio */
+    width: 100%;
+    img{
+      transition: ease 0.3s all;
+    }
+  }
+
+  .content {
+    flex: 1;
+    border: solid 1px $black;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 40px;
+
+    .titre {
+      font-size: 24px;
+      margin-bottom: 0;
+    }
+
+    .texte {
+      margin-bottom: 0;
+    }
+    .data{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .left{
+        display: flex;
+        gap:30px;
+        span{
+          color:$orange;
+          font-size: 14px;
+        }
+      }
+    }
+    .btn{
+      &::after{
+        content:"";
+        position: absolute;
+        inset: 0;
+      }
+    }
+  }
+
+  &:hover, &:focus-visible{
+    .img-wrap{
+      img{
+        scale: 1.1;
+      }
+    }
+  }
+}

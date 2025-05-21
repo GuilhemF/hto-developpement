@@ -1,0 +1,29 @@
+/*!
+Author: Wesign Communication
+Author URI: http://www.wesign.fr/
+*/
+
+// Settings
+@import 'settings/variables';
+@import 'settings/media';
+//@import 'node_modules/locomotive-scroll/dist/locomotive-scroll';
+
+// Generic
+@import 'generic/normalize';
+//@import 'generic/fonts';
+@import 'generic/base';
+@import 'generic/grid';
+@import 'generic/typographie';
+@import 'generic/spacing';
+
+// Components
+@import 'components/components';
+@import 'components/footer';
+@import 'components/forms';
+@import 'components/header';
+@import 'components/layouts';
+@import 'components/menu';
+@import 'components/preloader';
+
+// Pages
+@import 'pages/home';

@@ -1,0 +1,54 @@
+body > header{
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3, 1fr);
+    padding:0 10px;
+    width: calc(100% - 50px);
+    height: 50px;
+    position:fixed;
+    top:30px;
+    left:25px;
+    transition: all .6s cubic-bezier(.23,1,.32,1);
+    z-index: 30;
+    background-color: $white;
+    border-radius: 5px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 5px 5px 0 rgba(0, 0, 0, 0.09), 0 11px 7px 0 rgba(0, 0, 0, 0.05), 0 20px 8px 0 rgba(0, 0, 0, 0.01), 0 32px 9px 0 rgba(0, 0, 0, 0);
+
+    @include min(lg) {
+        left:50px;
+        width: calc(100% - 100px);
+        padding:0 25px;
+    }
+    
+    .z-30{
+        z-index: 30;
+    }
+    
+    &.is-open{
+        //box-shadow: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        box-shadow: 0 10px 8px 0 rgba(0,0,0,0.2);
+    }
+    > .text-right{
+        align-self: center;
+        > a{
+            line-height: 1;
+            img{
+                width: 100%;
+                height: auto;
+                max-width: 130px;
+                @include min(lg) {
+                    width: inherit;
+                }
+            }
+        }
+        
+    }
+    .h-link{
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+}
