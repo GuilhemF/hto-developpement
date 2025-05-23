@@ -1,12 +1,60 @@
 ---
+import { Image } from "astro:assets";
+import logotype from "../assets/images/logotype.svg";
 
+const currentYear = new Date().getFullYear();
+import { getGlobalACF, getFooterMenu } from "../lib/api";
+const globalACF = await getGlobalACF();
+const menu = await getFooterMenu();
+
+const generalSettings = Astro.props;
 ---
-<style>
-    footer p {
-        text-align: center;
-    }
-</style>
-<hr>
-<footer>
-    <p>Made with ❤️ by <a href='https://developers.wpengine.com/'>WP Engine Dev Rel</a></p>
+
+<footer id="footer" class="ly">
+  <div class="container">
+    <div class="grid">
+      <div class="w-12 w-lg-4 left">
+        <a href="/">
+          <Image
+            src={logotype}
+            width="128"
+            height="40"
+            alt={`logo - ${generalSettings.title}`}
+          />
+        </a>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis
+          debitis molestias blanditiis delectus repellendus maxime. Aliquid,
+          odit vero!
+        </p>
+        <p>
+          <a href="tel:{globalACF.telephone}">{globalACF.telephone}</a><br />
+          <span set:html={globalACF.adresse} />
+        </p>
+      </div>
+      <div class="w-12 w-lg-4 s-lg-9">
+        <ul>
+          {
+            menu.map((item) => (
+              <li>
+                <a href={item.uri || "/"}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container-full copy">
+    <p class="cr">
+      &copy; Copyright {currentYear} – Starter. Tous droits réservés.
+    </p>
+    <p class="wesign">
+      Une création originale <a
+        href="https://www.wesign.fr/"
+        target="_blank"
+        title="Wesign agence de communication">Wesign</a
+      >, <strong>agence de communication digitale.</strong>
+    </p>
+  </div>
 </footer>

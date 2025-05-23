@@ -1,0 +1,44 @@
+/* CSS - Styles de base et transitions */
+body main#main {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* État initial au chargement */
+body.page-loading main#main {
+  opacity: 0;
+}
+
+/* Animation d'entrée */
+body.page-enter main#main {
+  opacity: 0;
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Animation de sortie */
+body.page-exit main#main {
+  opacity: 1;
+  animation: fade-out 0.3s ease-in forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+}

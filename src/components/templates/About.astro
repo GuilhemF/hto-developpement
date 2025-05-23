@@ -1,0 +1,85 @@
+---
+import { Debug } from "astro/components";
+import { Image } from "astro:assets";
+const { node } = Astro.props;
+
+const query = `
+  query GetAboutPageACF($id: ID!) {
+    page(id: $id, idType: DATABASE_ID) {
+
+      databaseId
+      
+      testAcf {
+        testos { # This is the repeater field name
+            yo    # This is the sub-field name
+        }
+        }
+      pageAPropos {
+        contenu
+      }
+    }
+  }
+`;
+
+const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    query,
+    variables: {
+      id: node.databaseId, // ID de ta page
+    },
+  }),
+});
+
+const { data } = await response.json();
+const testos = data.page.testAcf?.testos ?? [];
+const contenu = data.page.pageAPropos?.contenu ?? "";
+---
+
+<section class="ly">
+  <div class="container">
+    <div class="grid">
+      <div class="w-12">
+        <h1>Titre page : {node.title}</h1>
+        <div class="titre"><h2>Contenu Page :</h2></div>
+        <article set:html={node.content} />
+      </div>
+    </div>
+  </div>
+</section>
+<section class="ly">
+  <div class="container">
+    <div class="grid">
+      <div class="w-12 w-lg-6">
+        <picture class="img-wrap" style="height:50vh;">
+          <source srcset={node.featuredImage.node.srcSet} />
+          <img
+            src={node.featuredImage.node.sourceUrl}
+            alt={node.featuredImage.node.altText}
+            loading="lazy"
+            width={node.featuredImage.node.mediaDetails?.width}
+            height={node.featuredImage.node.mediaDetails?.height}
+          />
+        </picture>
+      </div>
+      <div class="w-12 w-lg-5 s-lg-8">
+        <div class="titre">
+          <h3>Le thumbnail de la page et son contenu acf</h3>
+        </div>
+        <div set:html={contenu} />
+        <h2>ACF GLobal à toute les pages</h2>
+        <ul>
+          {testos.map((item) => <li>{item.yo}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+{
+  /* 
+<Debug answer={node} />
+<Debug answer={contenu} />
+*/
+}

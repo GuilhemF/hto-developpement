@@ -3,10 +3,20 @@ export const prerender = true;
 import MainLayout from "../layouts/MainLayout.astro";
 import Archive from "../components/templates/Archive.astro";
 import Single from "../components/templates/Single.astro";
+import Page from "../components/templates/Page.astro";
+import About from "../components/templates/About.astro";
 import { getNodeByURI, getAllUris } from "../lib/api";
+
+import { Debug } from "astro/components";
+
 const uri = `/${Astro.params.uri}/`;
 const data = await getNodeByURI(uri);
 const node = data.nodeByUri;
+
+const pageTemplates = {
+  About: About,
+  // Ajoute ici d'autres templates : "Recrutement": Recrutement, etc.
+};
 
 export async function getStaticPaths() {
   return await getAllUris();
@@ -19,8 +29,15 @@ function resolveContentTemplate(node) {
       template = Single;
       break;
     case "Page":
-      template = Single;
+      if (
+        node.template?.templateName &&
+        pageTemplates[node.template.templateName]
+      ) {
+        return pageTemplates[node.template.templateName];
+      }
+      return Page;
       break;
+
     case "Category":
       template = Archive;
       break;
@@ -37,10 +54,9 @@ function resolveContentTemplate(node) {
 const Template = resolveContentTemplate(node);
 ---
 
-<MainLayout
-  id="main"
-  title={node.title || node.name}
-  description={node.excerpt}
->
-  <Template node={node} />
+<MainLayout title={node.title || node.name} description={node.excerpt}>
+  <main id="main">
+    <!--<Debug answer={node} />-->
+    <Template node={node} />
+  </main>
 </MainLayout>

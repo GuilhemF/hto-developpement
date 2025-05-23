@@ -1,0 +1,82 @@
+/* ---------------- */
+/* --- Settings --- */
+/* ---------------- */
+
+@use "sass:map";
+@use "../abstracts/variables" as var;
+
+/**
+ * Mixin pour media-queries basées sur un nombre en px
+ * Usage : @include rwd(600) { … }
+ */
+@mixin rwd($screen) {
+  @media (min-width: #{$screen}px) {
+    @content;
+  }
+}
+
+/**
+ * Mixin min : breakpoint par clé du map $breakpoints
+ * Usage : @include min(md) { … }
+ */
+@mixin min($breakpoint) {
+  @if map.has-key(var.$breakpoints, $breakpoint) {
+    $value: map.get(var.$breakpoints, $breakpoint);
+    @media (min-width: #{$value}px) {
+      @content;
+    }
+  } @else {
+    @warn "Mauvais breakpoint : ‘#{$breakpoint}’. Breakpoints possibles : #{map.keys($breakpoints)}";
+  }
+}
+
+/**
+ * Mixin max : breakpoint max par clé du map $breakpoints
+ * Usage : @include max(sm) { … }
+ */
+@mixin max($breakpoint) {
+  @if map.has-key($breakpoints, $breakpoint) {
+    $value: map.get($breakpoints, $breakpoint);
+    @media (max-width: #{$value}px) {
+      @content;
+    }
+  } @else {
+    @warn "Mauvais breakpoint : ‘#{$breakpoint}’. Breakpoints possibles : #{map.keys($breakpoints)}";
+  }
+}
+
+/**
+ * Mixin between : intervalle de deux breakpoints (inclut lower, exclut upper)
+ * Usage : @include between(sm, lg) { … }
+ */
+@mixin between($lower, $upper) {
+  $keys: map.keys(var.$breakpoints);
+  $errors: ();
+  @if map.has-key(var.$breakpoints, $lower) and
+    map.has-key(var.$breakpoints, $upper)
+  {
+    $low: map.get(var.$breakpoints, $lower);
+    $up: map.get($breakpoints, $upper);
+    @media (min-width: #{$low}px) and (max-width: #{($up - 1)}px) {
+      @content;
+    }
+  } @else {
+    @if not map.has-key($breakpoints, $lower) {
+      $errors: append($errors, $lower);
+    }
+    @if not map.has-key($breakpoints, $upper) {
+      $errors: append($errors, $upper);
+    }
+    @warn "Mauvais breakpoint(s) : #{inspect($errors)}. Breakpoints possibles : #{$keys}";
+  }
+}
+
+@function em($size) {
+  //@return ($size / $base) * 1em;
+  @return ($size / 16px) * 1em;
+}
+
+@function rem($size) {
+  //@return ($size / $base) * 1rem;
+  @return ($size / 16px) * 1rem;
+}

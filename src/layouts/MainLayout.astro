@@ -1,9 +1,15 @@
 ---
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
-import { navQuery } from "../lib/api";
+import SiteLoader from "../components/SiteLoader.astro";
+//import Grid from "../components/Grid.astro";
+import { Debug } from "astro/components";
+
+import { navQuery, getGlobalACF } from "../lib/api";
 import "../styles/main.scss";
 const { menus, generalSettings } = await navQuery();
+
+const globalACF = await getGlobalACF();
 const primaryMenu = menus.nodes[0];
 
 const { title, description } = Astro.props;
@@ -17,25 +23,17 @@ const { title, description } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{`${title} | ${generalSettings.title}`}</title>
     <meta name="description" content={description} />
+
+    <link rel="modulepreload" href="/src/scripts/main.js" />
   </head>
   <body>
-    <main>
-      <SiteNav menu={primaryMenu} generalSettings={generalSettings} />
-      <hr />
-      <slot />
-    </main>
-    <SiteFooter />
+    <!--<Debug answer={globalACF ?? "no data"} />-->
+    <SiteLoader />
+    <SiteNav menu={primaryMenu} generalSettings={generalSettings} />
+    <slot />
+    <SiteFooter generalSettings={generalSettings} />
   </body>
 </html>
-
-<style>
-  body {
-    font-family: "Open Sans", sans-serif;
-    font-size: 18px;
-  }
-  main {
-    width: 100%;
-    max-width: 1024px;
-    margin: auto;
-  }
-</style>
+<script type="module" is:inline>
+  import "/src/scripts/main.js";
+</script>

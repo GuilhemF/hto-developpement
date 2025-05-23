@@ -1,24 +1,27 @@
 ---
-
+const { titre, image } = Astro.props;
+import { Picture } from "astro:assets";
 ---
 
-<section>
-    <h1>Hello, web friend! 🌎 Thanks for visiting</h1>
-    <p></p>
+<section class="ly hero-section">
+  <div class="container-full">
+    <Picture
+      src={image}
+      formats={["avif", "webp"]}
+      alt="A description of my image."
+    />
+  </div>
+  <div class="container">
+    <div class="grid">
+      <div class="w-12 w-lg-6">
+        <h1 set:html={titre} />
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora cum
+          pariatur, quasi labore laboriosam iste harum ipsa minima voluptas, at
+          odio consequatur ratione? Nihil voluptatum officia neque, in quae
+          ipsam!
+        </p>
+      </div>
+    </div>
+  </div>
 </section>
-
-<style>
-    section {
-        box-sizing: border-box;
-        min-height: 450px;
-        background: linear-gradient(90deg,#0076dc 0%,#7a1ba6 100%);
-        border-radius: 10px;
-        color: #fff;
-        font-size: 2rem;
-        padding: 4rem 3rem;
-    }
-    h1 {
-       text-align: center;
-       margin: auto;
-    }
-</style>

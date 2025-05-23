@@ -1,0 +1,19 @@
+@use "../abstracts" as *;
+
+.titre,
+h1 {
+  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  font-family: $font-secondary;
+  line-height: 0.9;
+  * {
+    font-size: 3rem;
+    margin-bottom: 0;
+    line-height: 0.9;
+  }
+}
+h1 {
+  font-size: 4rem;
+}
+.texte {
+}

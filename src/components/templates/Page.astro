@@ -1,0 +1,41 @@
+---
+const { node } = Astro.props;
+---
+
+<section class="ly">
+  <div class="container">
+    <div class="grid">
+      <div class="w-12">
+        <h1>{node.title}</h1>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="ly">
+  <div class="container">
+    <div class="grid">
+      <div class="w-12 w-lg-6">
+        <picture class="img-wrap" style="height:50vh;">
+          <source srcset={node.featuredImage.node.srcSet} />
+          <img
+            src={node.featuredImage.node.sourceUrl}
+            alt={node.featuredImage.node.altText}
+            loading="lazy"
+            width={node.featuredImage.node.mediaDetails?.width}
+            height={node.featuredImage.node.mediaDetails?.height}
+          />
+        </picture>
+      </div>
+      <div class="w-12 w-lg-5 s-lg-8">
+        <article set:html={node.content} />
+      </div>
+    </div>
+  </div>
+</section>
+
+{
+  /* 
+<Debug answer={node} />
+<Debug answer={contenu} />
+*/
+}

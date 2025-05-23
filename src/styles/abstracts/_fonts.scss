@@ -1,0 +1,38 @@
+@font-face {
+  font-display: swap;
+  font-family: "Eiko";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/eiko/eiko-light-italic.woff") format("woff2");
+  src: url("/fonts/eiko/eiko-light-italic.eot") format("embedded-opentype"),
+    url("/fonts/eiko/eiko-light-italic.woff") format("woff"),
+    url("/fonts/eiko/eiko-light-italic.woff2") format("woff2"),
+    url("/fonts/eiko/eiko-light-italic.ttf") format("truetype"),
+    url("/fonts/eiko/eiko-light-italic.svg") format("svg");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Montreal";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/montreal/montreal-book.woff2");
+  src: url("/fonts/montreal/montreal-book.eot") format("embedded-opentype"),
+    url("/fonts/montreal/montreal-book.woff") format("woff"),
+    url("/fonts/montreal/montreal-book.woff2"),
+    url("/fonts/montreal/montreal-book.ttf") format("truetype"),
+    url("/fonts/montreal/montreal-book.svg") format("svg");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Montreal";
+  font-style: normal;
+  font-weight: 600;
+  src: url("/fonts/montreal/montreal-medium.woff2");
+  src: url("/fonts/montreal/montreal-medium.eot") format("embedded-opentype"),
+    url("/fonts/montreal/montreal-medium.woff") format("woff"),
+    url("/fonts/montreal/montreal-medium.woff2"),
+    url("/fonts/montreal/montreal-medium.ttf") format("truetype"),
+    url("/fonts/montreal/montreal-medium.svg") format("svg");
+}
