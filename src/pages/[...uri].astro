@@ -55,7 +55,7 @@ const Template = resolveContentTemplate(node);
 ---
 
 <MainLayout title={node.title || node.name} description={node.excerpt}>
-  <main id="main">
+  <main id="main" transition:animate="fade">
     <!--<Debug answer={node} />-->
     <Template node={node} />
   </main>

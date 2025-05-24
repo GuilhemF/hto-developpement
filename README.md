@@ -52,3 +52,10 @@ WP Engine's Atlas platform provides a performant and user-friendly hosting platf
 ## Note Astro Wesign
 
 Debug : import { Debug } from "astro/components"; <Debug answer={node} />
+
+Directive Déclenche le JS… Use case
+client:load dès le chargement header interactif
+client:idle après que le navigateur est libre analytics, logger
+client:visible quand visible à l’écran animations, sliders
+client:media si le media query est vrai composants desktop-only
+client:only sans SSR, uniquement client full React/Svelte block

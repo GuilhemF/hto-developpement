@@ -1,9 +1,12 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import SiteNav from "../components/SiteNav.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteLoader from "../components/SiteLoader.astro";
 //import Grid from "../components/Grid.astro";
 import { Debug } from "astro/components";
+
+import LoggerClient from "../components/js/LoggerClient.jsx";
 
 import { navQuery, getGlobalACF } from "../lib/api";
 import "../styles/main.scss";
@@ -24,16 +27,17 @@ const { title, description } = Astro.props;
     <title>{`${title} | ${generalSettings.title}`}</title>
     <meta name="description" content={description} />
 
-    <link rel="modulepreload" href="/src/scripts/main.js" />
+    <!--<link rel="modulepreload" href="/src/scripts/main.js" />-->
+    <ClientRouter />
   </head>
   <body>
     <!--<Debug answer={globalACF ?? "no data"} />-->
-    <SiteLoader />
+    <LoggerClient client:idle />
+    <!--<SiteLoader />-->
     <SiteNav menu={primaryMenu} generalSettings={generalSettings} />
     <slot />
     <SiteFooter generalSettings={generalSettings} />
-  </body>
-</html>
-<script type="module" is:inline>
+  </body><!--<script type="module" is:inline>
   import "/src/scripts/main.js";
-</script>
+</script>-->
+</html>

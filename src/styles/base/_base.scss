@@ -32,10 +32,18 @@ a {
 }
 
 main {
+  will-change: transform, opacity;
   padding-top: 6rem;
   section {
     margin-bottom: 6rem;
   }
+}
+/* Éviter le flash de contenu */
+.page-transitioning main {
+  visibility: hidden;
+}
+main:not(.gsap-animated) {
+  opacity: 0;
 }
 
 .text-center,

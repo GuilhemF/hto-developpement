@@ -12,7 +12,13 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.2.1",
-    "astro": "^5.7.12",
+    "@astrojs/react": "^4.3.0",
+    "astro": "^5.8",
+    "gsap": "^3.13.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "swiper": "^11.2.8",
+    "truncate-html": "^1.2.1",
     "vite": "^6.3.5"
   },
   "devDependencies": {

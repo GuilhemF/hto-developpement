@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import logotype from "../assets/images/logotype.svg";
+import NavClient from "./js/NavClient.jsx";
 const { menu, generalSettings } = Astro.props;
 ---
 
@@ -31,4 +32,5 @@ const { menu, generalSettings } = Astro.props;
       </ul>
     </nav>
   </div>
+  <NavClient client:load />
 </header>
