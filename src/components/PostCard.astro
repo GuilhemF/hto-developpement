@@ -1,7 +1,7 @@
 ---
 const { post, class: className = "" } = Astro.props;
 import truncate from "truncate-html";
-const shortExcerpt = truncate(post.excerpt, 200, { byWords: false });
+const shortExcerpt = truncate(post.excerpt, 100, { byWords: false });
 ---
 
 <article class={`card-actu ${className}`}>
